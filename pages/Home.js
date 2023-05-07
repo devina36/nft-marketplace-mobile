@@ -1,19 +1,14 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { View, TextInput, TouchableOpacity, Image, FlatList, ActivityIndicator, Text } from 'react-native';
+import React from 'react';
+import { View, TextInput, TouchableOpacity, Image, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import LiveCard from '../components/LiveCard';
+import BottomBar from '../components/BottomBar';
+import Listing from '../components/Listing';
+import Top from '../components/Top';
 import { icons } from '../constant';
-import useFecth from '../hook/useFetch';
 
 const Home = ({ navigation }) => {
-  const { data, isLoading, error } = useFecth('v2/orders/ethereum/seaport/listings', {
-    limit: '10',
-    order_by: 'created_date',
-    order_direction: 'desc',
-  });
-
   return (
     <SafeAreaView className="bg-[#161616] pt-3 flex-1">
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -27,7 +22,9 @@ const Home = ({ navigation }) => {
             </TouchableOpacity>
             <TextInput
               placeholder="Search NFT"
-              className="bg-[#262626] text-red-300 w-full text-sm rounded-xl pl-12 pr-4 py-[11px] placeholder:text-white"
+              style={{ fontFamily: 'Regular' }}
+              className="bg-[#262626] w-full text-sm rounded-xl pl-12 pr-4 py-[11px] text-white"
+              placeholderTextColor="#545454"
             />
           </View>
           <TouchableOpacity className="bg-[#262626] p-3  rounded-xl w-fit">
@@ -35,21 +32,11 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <View className="pl-5 py-5">
-          {isLoading ? (
-            <ActivityIndicator size="large" color={'#fff'} />
-          ) : error ? (
-            <Text>Something went wrong</Text>
-          ) : (
-            <FlatList
-              data={data.orders}
-              renderItem={({ item }) => <LiveCard item={item} />}
-              keyExtractor={(item) => item.relay_id}
-              contentContainerStyle={{ columnGap: 20 }}
-              horizontal
-            />
-          )}
-        </View>
+        <Listing />
+
+        <Top />
+
+        <BottomBar />
       </ScrollView>
     </SafeAreaView>
   );
