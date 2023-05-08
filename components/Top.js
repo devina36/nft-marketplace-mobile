@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import topChard from '../hook/topChard';
-import useFecth from '../hook/useFetch';
 import TopCard from './TopCard';
 
 const Top = () => {
   const { data, isLoading, error } = topChard();
 
   return (
-    <View>
-      <View className="flex justify-between items-center flex-row mt-5 px-5">
+    <View className=" mt-5">
+      <View className="flex justify-between items-center flex-row px-5">
         <Text className=" text-xl leading-[1.5] text-white" style={{ fontFamily: 'Medium' }}>
           Top Creator
         </Text>
@@ -26,7 +25,7 @@ const Top = () => {
           <Text>Something went wrong</Text>
         ) : (
           <FlatList
-            data={data.data.rankings.edges}
+            data={data}
             renderItem={({ item }) => <TopCard item={item} />}
             keyExtractor={(item) => item.node.id}
             contentContainerStyle={{ columnGap: 20 }}

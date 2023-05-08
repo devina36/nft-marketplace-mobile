@@ -31,13 +31,10 @@ const Home = ({ navigation }) => {
             <Image source={icons.notification} resizeMode="contain" className="w-[26px] h-[26px]" />
           </TouchableOpacity>
         </View>
-
         <Listing />
-
         <Top />
-
-        <BottomBar />
       </ScrollView>
+      <BottomBar />
     </SafeAreaView>
   );
 };

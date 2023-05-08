@@ -23,7 +23,7 @@ const topChard = () => {
         chain: ['ETHEREUM'],
         count: 10,
         cursor: null,
-        sortBy: 'SEVEN_DAY_VOLUME',
+        sortBy: 'ONE_DAY_VOLUME',
         parents: null,
         createdAfter: null,
       },
@@ -35,7 +35,7 @@ const topChard = () => {
 
     try {
       const response = await axios.request(options);
-      setData(response.data);
+      setData(response.data.data.rankings.edges);
       setIsLoading(false);
     } catch (error) {
       setError(error);
@@ -50,7 +50,12 @@ const topChard = () => {
     getData();
   }, []);
 
-  return { data, isLoading, error };
+  const refetch = () => {
+    setIsLoading(true);
+    fetchData();
+  };
+
+  return { data, isLoading, error, refetch };
 };
 
 export default topChard;
