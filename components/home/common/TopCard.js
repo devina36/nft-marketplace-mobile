@@ -10,7 +10,7 @@ const TopCard = ({ item }) => {
         </View>
         {item.node.isVerified === true ? (
           <Image
-            source={require('../assets/icons/isVerify.png')}
+            source={require('../../../assets/icons/isVerify.png')}
             resizeMode="contain"
             className="absolute bottom-0 right-0 w-[14px] h-[14px]"
           />
@@ -19,7 +19,7 @@ const TopCard = ({ item }) => {
         )}
       </View>
 
-      <Text className=" text-center text-sm mb-[4px]" style={{ fontFamily: 'Medium' }}>
+      <Text className=" text-center text-white text-sm mb-[4px]" style={{ fontFamily: 'Medium' }}>
         {item?.node.name}
       </Text>
       <Text className="text-[#7f7f7f] text-xs" style={{ fontFamily: 'Medium' }}>

@@ -1,11 +1,10 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
-import { useCallback } from 'react';
 import Details from './pages/Details';
 import Home from './pages/Home';
-import * as SplashScreen from 'expo-splash-screen';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import Search from './components/home/common/Search';
+import Notification from './components/home/common/Notification';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,8 +20,28 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-        <Stack.Screen name="Details" component={Details} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerStyle: { backgroundColor: '#161616' },
+            headerShadowVisible: true,
+            headerTitle: '',
+            navigationBarColor: '#161616',
+            headerLeft: () => <Search />,
+            headerRight: () => <Notification />,
+          }}
+        />
+        <Stack.Screen
+          name="Details"
+          component={Details}
+          options={{
+            headerStyle: { backgroundColor: '#161616' },
+            headerShadowVisible: true,
+            headerTitle: 'Details',
+            navigationBarColor: '#161616',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

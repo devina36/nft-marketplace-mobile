@@ -1,19 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native';
-import useFecth from '../hook/useFetch';
-import LiveCard from './LiveCard';
+import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
+import rankings from '../../hook/rankings';
+import TopCard from './common/TopCard';
 
-const Listing = () => {
-  const { data, isLoading, error } = useFecth('v2/orders/ethereum/seaport/listings', {
-    limit: '10',
-    order_by: 'created_date',
-    order_direction: 'desc',
-  });
+const Top = () => {
+  const { data, isLoading, error } = rankings();
+
   return (
-    <View>
-      <View className="flex justify-between items-center flex-row mt-5 px-5">
+    <View className=" mt-5 mb-14">
+      <View className="flex justify-between items-center flex-row px-5">
         <Text className=" text-xl leading-[1.5] text-white" style={{ fontFamily: 'Medium' }}>
-          Live Bids
+          Top Creator
         </Text>
         <TouchableOpacity>
           <Text className="text-xs leading-[1.5] text-[#848484]" style={{ fontFamily: 'Regular' }}>
@@ -21,7 +18,6 @@ const Listing = () => {
           </Text>
         </TouchableOpacity>
       </View>
-
       <View className="mt-3 pl-5">
         {isLoading ? (
           <ActivityIndicator size="large" color={'#fff'} />
@@ -29,9 +25,9 @@ const Listing = () => {
           <Text>Something went wrong</Text>
         ) : (
           <FlatList
-            data={data.orders}
-            renderItem={({ item }) => <LiveCard item={item} />}
-            keyExtractor={(item) => item.relay_id}
+            data={data}
+            renderItem={({ item }) => <TopCard item={item} />}
+            keyExtractor={(item) => item.node.id}
             contentContainerStyle={{ columnGap: 20 }}
             horizontal
           />
@@ -41,4 +37,4 @@ const Listing = () => {
   );
 };
 
-export default Listing;
+export default Top;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-const topChard = () => {
+const rankings = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -58,4 +58,4 @@ const topChard = () => {
   return { data, isLoading, error, refetch };
 };
 
-export default topChard;
+export default rankings;
