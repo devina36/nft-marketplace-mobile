@@ -2,9 +2,10 @@ import { useFonts } from 'expo-font';
 import Details from './pages/Details';
 import Home from './pages/Home';
 import Search from './components/home/common/Search';
-import Notification from './components/home/common/Notification';
-import { NavigationContainer } from '@react-navigation/native';
+import ButtonBox from './components/ButtonBox';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { icons } from './constant';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,18 +30,21 @@ const App = () => {
             headerTitle: '',
             navigationBarColor: '#161616',
             headerLeft: () => <Search />,
-            headerRight: () => <Notification />,
+            headerRight: () => <ButtonBox icons={icons.notification} />,
           }}
         />
         <Stack.Screen
           name="Details"
           component={Details}
-          options={{
+          options={({ navigation }) => ({
             headerStyle: { backgroundColor: '#161616' },
             headerShadowVisible: true,
-            headerTitle: 'Details',
+            headerTitle: 'NFT Details',
+            headerTitleStyle: { color: '#fff', fontFamily: 'SemiBold', fontSize: 20 },
+            headerTitleAlign: 'center',
             navigationBarColor: '#161616',
-          }}
+            headerLeft: () => <ButtonBox icons={icons.back} handleNavigate={() => navigation.goBack()} />,
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

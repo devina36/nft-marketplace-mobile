@@ -5,10 +5,11 @@ import LiveCard from './common/LiveCard';
 
 const Listing = () => {
   const { data, isLoading, error } = useFecth('v2/orders/ethereum/seaport/listings', {
-    limit: '10',
+    limit: '5',
     order_by: 'created_date',
     order_direction: 'desc',
   });
+
   return (
     <View>
       <View className="flex justify-between items-center flex-row px-5">

@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
-import CountDown from 'react-native-countdown-component';
+// import CountDown from 'react-native-countdown-component';
 
-const LiveCard = ({ item }) => {
+const LiveCard = ({ item, className }) => {
   // const time = Date.now(0).toString().slice(0, 10);
   // const now = parseInt(item.expiration_time) - parseInt(time);
   const navigation = useNavigation();
@@ -24,7 +24,7 @@ const LiveCard = ({ item }) => {
       <Image
         source={{ uri: `${item?.maker_asset_bundle?.assets[0]?.image_url}` }}
         resizeMode="cover"
-        className=" rounded-xl w-[280px] h-[400px]"
+        className={`rounded-xl w-[280px] h-[400px]`}
       />
       <View className='absolute w-fit"'>
         {/* <View className="bg-white/20 rounded-full" blurRadius={19}>

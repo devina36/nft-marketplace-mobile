@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { REACT_APP_API_KEY } from '@env';
 
 const rankings = () => {
   const [data, setData] = useState([]);
@@ -12,7 +13,7 @@ const rankings = () => {
     headers: {
       'content-type': 'application/json',
       'x-signed-query': '44f606da55e882129e8afff8b756e0400519384642b5afd1e8bfe4b7429d6c11',
-      'X-RapidAPI-Key': 'f3c574cbc5msh6ef71b73037681ap189404jsn9e70277c88f4',
+      'X-RapidAPI-Key': REACT_APP_API_KEY,
       'X-RapidAPI-Host': 'opensea15.p.rapidapi.com',
     },
     data: {

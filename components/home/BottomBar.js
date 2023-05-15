@@ -1,9 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { useColorScheme } from 'react-native';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { bottomNav } from '../../constant';
-import { BlurView } from '@react-native-community/blur';
 
 const BottomBar = () => {
   const navigation = useNavigation();

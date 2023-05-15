@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-const rapidApiKey = 'f3c574cbc5msh6ef71b73037681ap189404jsn9e70277c88f4';
+import { REACT_APP_API_KEY } from '@env';
 
 const useFecth = (endpoint, query) => {
   const [data, setData] = useState([]);
@@ -16,7 +15,7 @@ const useFecth = (endpoint, query) => {
     },
     headers: {
       'content-type': 'application/octet-stream',
-      'X-RapidAPI-Key': 'f3c574cbc5msh6ef71b73037681ap189404jsn9e70277c88f4',
+      'X-RapidAPI-Key': REACT_APP_API_KEY,
       'X-RapidAPI-Host': 'opensea15.p.rapidapi.com',
     },
   };
